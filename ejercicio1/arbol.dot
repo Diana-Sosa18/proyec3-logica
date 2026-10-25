@@ -1,0 +1,54 @@
+digraph arbol {
+  graph [label="Árbol genealógico de la familia Simpson", labelloc=t, fontsize=18,
+         fontname="Liberation Sans", splines=ortho, nodesep=0.3, ranksep=0.25, pad=0.3];
+  node  [fontname="Liberation Sans", fontsize=12, style=filled, width=1.1, height=0.45];
+  edge  [dir=none, color="#555555"];
+
+  node [shape=box, fillcolor="#dbe8f5"];
+  abraham    [label="Abraham"];
+  clancy     [label="Clancy"];
+  herb       [label="Herb"];
+  homero     [label="Homero"];
+  bart       [label="Bart"];
+
+  node [shape=ellipse, fillcolor="#f7dde4"];
+  mona       [label="Mona"];
+  jacqueline [label="Jacqueline"];
+  marge      [label="Marge"];
+  patty      [label="Patty"];
+  selma      [label="Selma"];
+  lisa       [label="Lisa"];
+  maggie     [label="Maggie"];
+  ling       [label="Ling"];
+
+  node [shape=point, width=0.01, height=0.01, label="", color="#555555"];
+  u1; u2; u3;
+  h2; h3;
+
+  { rank=same; abraham -> u1 -> mona; mona -> clancy [style=invis]; clancy -> u2 -> jacqueline; }
+  { rank=same; h2; }
+  { rank=same;
+    herb -> homero [style=invis];
+    homero -> u3 -> marge;
+    marge -> patty -> selma [style=invis];
+  }
+  { rank=same; h3; }
+  { rank=same; bart -> lisa -> maggie -> ling [style=invis]; }
+
+  u1 -> homero [weight=20];
+  abraham -> herb;
+  u2 -> h2 [weight=20];
+  h2 -> { marge patty selma };
+  u3 -> h3 [weight=20];
+  h3 -> { bart lisa maggie };
+  selma -> ling [weight=20];
+
+  subgraph cluster_leyenda {
+    label=""; style=rounded; color="#bbbbbb";
+    node [width=0.8, height=0.35, fontsize=10];
+    lh [shape=box, fillcolor="#dbe8f5", label="hombre"];
+    lm [shape=ellipse, fillcolor="#f7dde4", label="mujer"];
+    { rank=same; lh -> lm [style=invis]; }
+  }
+  ling -> lh [style=invis, minlen=2];
+}
