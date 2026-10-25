@@ -52,3 +52,20 @@ madre(X, Y) :-
 hijo(X, Y) :-
     progenitor(Y, X),
     hombre(X).
+
+% hija(X, Y): X es hija de Y (hija primero, progenitor despues).
+hija(X, Y) :-
+    progenitor(Y, X),
+    mujer(X).
+
+% abuelo(X, Y): X es abuelo de Y por cualquiera de sus progenitores.
+abuelo(X, Y) :-
+    progenitor(X, Z),
+    progenitor(Z, Y),
+    hombre(X).
+
+% abuela(X, Y): X es abuela de Y por cualquiera de sus progenitores.
+abuela(X, Y) :-
+    progenitor(X, Z),
+    progenitor(Z, Y),
+    mujer(X).
