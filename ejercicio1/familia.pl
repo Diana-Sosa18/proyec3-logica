@@ -37,3 +37,18 @@ progenitor(marge, lisa).
 progenitor(marge, maggie).
 
 progenitor(selma, ling).
+
+% padre(X, Y): X es padre de Y.
+padre(X, Y) :-
+    progenitor(X, Y),
+    hombre(X).
+
+% madre(X, Y): X es madre de Y.
+madre(X, Y) :-
+    progenitor(X, Y),
+    mujer(X).
+
+% hijo(X, Y): X es hijo de Y.
+hijo(X, Y) :-
+    progenitor(Y, X),
+    hombre(X).
